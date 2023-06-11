@@ -5,11 +5,9 @@ using UnityEngine;
 public class PlayerIdleState : IState
 {
     PlayerStateManager player;
-    Rigidbody2D rigid;
     public PlayerIdleState(PlayerStateManager player)
     {
         this.player = player;
-        rigid = player.GetComponent<Rigidbody2D>();
     }
 
     public void EnterState()
@@ -52,11 +50,14 @@ public class PlayerIdleState : IState
         if (player.inputController.isDashPress)
             player.SwitchState(player.dashState);
 
+        if (player.inputController.isTPress)
+            player.SwitchState(player.spellCastState);
+            
         /***********************************************************/
 
         if (player.playerCollision.isGrounded) return;
 
-        if (rigid.velocity.y < 0)
+        if (player.rigid.velocity.y < 0)
             player.SwitchState(player.fallState);
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)

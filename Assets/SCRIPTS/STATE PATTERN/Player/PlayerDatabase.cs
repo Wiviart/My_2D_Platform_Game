@@ -53,6 +53,6 @@ public class PlayerDatabase : MonoBehaviour
     public string AIR_ATK_2 = "Attack Jump 3 Begin";
     public string AIR_ATK_2_LOOP = "Attack Jump 3 Loop";
     public string AIR_ATK_2_END = "Attack Jump 3 End";
-
+    public string SPELL = "Spell Cast";
 
 }

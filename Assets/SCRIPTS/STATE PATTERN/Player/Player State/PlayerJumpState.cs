@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerJumpState : IState
 {
     PlayerStateManager player;
-    PlayerJump playerJump;
     public PlayerJumpState(PlayerStateManager player)
     {
         this.player = player;

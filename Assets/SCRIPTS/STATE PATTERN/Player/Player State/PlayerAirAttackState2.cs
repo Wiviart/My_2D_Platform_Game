@@ -15,7 +15,6 @@ public class PlayerAirAttackState2 : IState
     {
         player.playerAnimation.PlayAnimatorClip(player.playerDatabase.AIR_ATK_2);
         player.soundEffect.PlayAudio(5);
-        playerAttack.AttackCast(5);
     }
 
     public void ExitState()
@@ -28,6 +27,8 @@ public class PlayerAirAttackState2 : IState
 
     public void UpdateState()
     {
+        playerAttack.AttackCast(5);
+
         if (player.playerAnimation.currentState.normalizedTime <= 0.5f) return;
 
         if (player.playerDatabase.isHurt)
@@ -41,7 +42,10 @@ public class PlayerAirAttackState2 : IState
         player.playerAnimation.PlayAnimatorClip(player.playerDatabase.AIR_ATK_2_LOOP);
 
         if (player.playerCollision.isGrounded)
+        {
             player.playerAnimation.PlayAnimatorClip(player.playerDatabase.AIR_ATK_2_END);
+            playerAttack.AttackCast(6);
+        }
 
         if (player.playerAnimation.CheckCurrentClip(player.playerDatabase.AIR_ATK_2_END) && player.playerAnimation.currentState.normalizedTime > 1)
             player.SwitchState(player.idleState);

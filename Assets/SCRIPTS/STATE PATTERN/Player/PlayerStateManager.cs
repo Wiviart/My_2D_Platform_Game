@@ -54,6 +54,7 @@ public class PlayerStateManager : AStateMachine
     public PlayerWallClimbState wallClimbState;
     public PlayerHurtState hurtState;
     public PlayerDieState dieState;
+    public PlayerSpellCastState spellCastState;
 
     void StateDeclaration()
     {
@@ -64,19 +65,20 @@ public class PlayerStateManager : AStateMachine
         fallState = new PlayerFallState(this);
         onAirState = new PlayerOnAirState(this);
         dashState = new PlayerDashState(this);
+        crouchState = new PlayerCrouchState(this);
         attackState = new PlayerAttackState(this, playerAttack);
         attackState1 = new PlayerAttackState1(this, playerAttack);
         attackState2 = new PlayerAttackState2(this, playerAttack);
         airAttackState = new PlayerAirAttackState(this, playerAttack);
         airAttackState1 = new PlayerAirAttackState1(this, playerAttack);
         airAttackState2 = new PlayerAirAttackState2(this, playerAttack);
-        crouchState = new PlayerCrouchState(this);
         wallSlideState = new PlayerWallSlideState(this);
         wallJumpState = new PlayerWallJumpState(this);
         wallLedgeState = new PlayerWallEdgeState(this);
         wallClimbState = new PlayerWallClimbState(this);
         hurtState = new PlayerHurtState(this, playerAttack);
         dieState = new PlayerDieState(this);
+        spellCastState = new PlayerSpellCastState(this);
     }
 
     void Awake()
