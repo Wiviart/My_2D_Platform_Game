@@ -172,6 +172,8 @@ public class PlayerCollisionDetector : MonoBehaviour
         RaycastHit2D hitX = Physics2D.Raycast(transform.position, Vector2.right * side, 1, playerDatabase.wallLayer);
         RaycastHit2D hitY = Physics2D.Raycast(point, Vector2.down, 1, playerDatabase.wallLayer);
 
+        if((hitX&&!hitY) ||(!hitX&&hitY)) return;
+
         float posX = hitX.point.x;
         float posY = hitY.point.y;
 
