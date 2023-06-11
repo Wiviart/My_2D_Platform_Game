@@ -6,19 +6,15 @@ public class PlayerWallEdgeState : IState
 {
     PlayerStateManager player;
     PlayerCollisionDetector playerCollision;
-    Rigidbody2D playerRigid;
-    string GRAB = "Wall Grab";
-    int ledgeSide;
 
-    public PlayerWallEdgeState(PlayerStateManager player, PlayerCollisionDetector playerCollision)
+    public PlayerWallEdgeState(PlayerStateManager player)
     {
         this.player = player;
-        playerRigid = player.GetComponent<Rigidbody2D>();
-        this.playerCollision = playerCollision;
+        this.playerCollision = player.playerCollision;
     }
     public void EnterState()
     {
-        player.playerAnimation.PlayAnimatorClip(GRAB);
+        player.playerAnimation.PlayAnimatorClip(player.playerDatabase.LEDGE_GRAB);
 
     }
 
@@ -44,7 +40,7 @@ public class PlayerWallEdgeState : IState
         if (player.inputController.inputY > 0)
             player.SwitchState(player.wallClimb);
 
-        if (player.inputController.inputY < 0)
+        if (player.inputController.inputY < 0 || !player.playerCollision.isLeftEdge && !player.playerCollision.isRightEdge)
             player.SwitchState(player.wallSlideState);
 
         if (player.inputController.isJumpPress)
@@ -53,11 +49,13 @@ public class PlayerWallEdgeState : IState
 
     void WallEdgeGrab()
     {
-        ledgeSide = playerCollision.GetLedgeSide();
+        Vector2 position = playerCollision.ledgePoint;
+        int side = position.x - player.transform.position.x > 0 ? 1 : -1;
 
-        if (ledgeSide == 0) return;
-        
-        playerRigid.velocity = Vector2.zero;
-        player.transform.localScale = new Vector3(ledgeSide, 1, 1);
+        player.rigid.velocity = Vector2.zero;
+
+        player.transform.localScale = new Vector2(side, 1);
+
+        player.transform.position = new Vector2(position.x - 0.3f * side, position.y - 0.9f);
     }
 }

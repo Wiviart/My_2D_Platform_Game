@@ -43,4 +43,10 @@ public class PlayerDatabase : MonoBehaviour
     public string JUMP = "Jump";
     public string CROUCH = "Crouch";
     public string CROUCH_MOVE = "Crouch Move";
+    public string WALLSLIDE = "Wall Slide";
+    public string WALLJUMP = "Wall Jump";
+    public string LEDGE_GRAB = "Wall Grab";
+    public string WALLCLB = "Wall Climb";
+    public string DASH = "Wall Jump";
+
 }

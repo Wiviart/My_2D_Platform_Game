@@ -8,14 +8,11 @@ public class PlayerWallClimbState : IState
     Rigidbody2D playerRigid;
     PlayerStateManager player;
     PlayerCollisionDetector playerCollision;
-    string WALLCLB = "Wall Climb";
-    int ledgeSide;
-    public Vector2 wallEdgePoint;
 
-    public PlayerWallClimbState(PlayerStateManager player, PlayerCollisionDetector playerCollision)
+    public PlayerWallClimbState(PlayerStateManager player)
     {
         this.player = player;
-        this.playerCollision = playerCollision;
+        this.playerCollision = player.playerCollision;
         playerRigid = player.GetComponent<Rigidbody2D>();
         playerColi = player.GetComponent<Collider2D>();
     }
@@ -24,7 +21,7 @@ public class PlayerWallClimbState : IState
 
     public void EnterState()
     {
-        player.playerAnimation.PlayAnimatorClip(WALLCLB);
+        player.playerAnimation.PlayAnimatorClip(player.playerDatabase.WALLCLB);
 
         WallClimb();
     }
@@ -46,7 +43,7 @@ public class PlayerWallClimbState : IState
         if (player.playerDatabase.isDied)
             player.SwitchState(player.dieState);
 
-        if (player.playerAnimation.currentState.IsName(WALLCLB)
+        if (player.playerAnimation.currentState.IsName(player.playerDatabase.WALLCLB)
          && player.playerAnimation.currentState.normalizedTime >= 0.9f)
         {
             player.SwitchState(player.idleState);
@@ -62,39 +59,15 @@ public class PlayerWallClimbState : IState
 
     IEnumerator WallClimbDelay()
     {
-        GetEdgePoint(ledgeSide);
-
         yield return new WaitForSeconds(0.5f);
 
         Vector3 position = new Vector3(
-            wallEdgePoint.x + playerColi.bounds.size.x / 2 * player.transform.localScale.x,
-            wallEdgePoint.y + playerColi.bounds.size.y / 2 + 0.46f,
+            playerCollision.ledgePoint.x + playerColi.bounds.size.x / 2 * player.transform.localScale.x,
+            playerCollision.ledgePoint.y + playerColi.bounds.size.y / 2 + 0.46f,
             0);
 
         player.transform.position = position;
     }
 
     /**************************************************************************************************************************************************/
-    void GetEdgePoint(int ledgeSide)
-    {
-        
-
-        switch (ledgeSide)
-        {
-            case -1:
-                {
-                    Collider2D leftHit = playerCollision.ledgePoint;
-
-                    wallEdgePoint = leftHit.bounds.center + new Vector3(leftHit.bounds.size.x / 2, leftHit.bounds.size.y / 2, 0);
-                    break;
-                }
-            case 1:
-                {
-                    Collider2D rightHit = playerCollision.ledgePoint;
-
-                    wallEdgePoint = rightHit.bounds.center + new Vector3(-rightHit.bounds.size.x / 2, rightHit.bounds.size.y / 2, 0);
-                    break;
-                }
-        }
-    }
 }

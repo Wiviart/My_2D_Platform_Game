@@ -1,0 +1,86 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Map 1.tmx",
+    "automapping.whileDrawing": false,
+    "expandedProjectPaths": [
+        "TileSet",
+        ".",
+        "prototype"
+    ],
+    "fileStates": {
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/SOFTWARE/UNITY_PROJECT/Dugeon_Game/Assets/DUNG PHAM/Tiled/TileMap/Map 2.tmx": {
+            "scale": 0.3139953987730061,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 242.04176334106728,
+                "y": 1304.1592380021982
+            }
+        },
+        "D:/SOFTWARE/UNITY_PROJECT/Dugeon_Game/Assets/DUNG PHAM/Tiled/TileSet/Assets.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/SOFTWARE/UNITY_PROJECT/Dugeon_Game/Assets/DUNG PHAM/Tiled/prototype/prototype16.tsx": {
+            "scaleInDock": 1
+        },
+        "Map 1.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 178,
+                "y": 130.75
+            }
+        },
+        "TileSet/atlas.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "TileSet/prototype16.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "prototype/prototype16.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "rule_1.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 11,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 15.454545454545457,
+                "y": 50.13636363636364
+            }
+        }
+    },
+    "last.imagePath": "D:/SOFTWARE/UNITY_PROJECT/Platform Game/Assets/SPRITES/Environment",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "Map 1.tmx",
+        "rule_1.tmx",
+        "TileSet/atlas.tsx"
+    ],
+    "project": "Map.tiled-project",
+    "recentFiles": [
+        "TileSet/atlas.tsx",
+        "rule_1.tmx",
+        "Map 1.tmx",
+        "TileSet/prototype16.tsx",
+        "prototype/prototype16.tsx",
+        "D:/SOFTWARE/UNITY_PROJECT/Dugeon_Game/Assets/DUNG PHAM/Tiled/TileMap/Map 2.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

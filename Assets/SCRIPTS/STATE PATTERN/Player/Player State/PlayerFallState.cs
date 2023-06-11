@@ -13,12 +13,14 @@ public class PlayerFallState : IState
         rigid = player.GetComponent<Rigidbody2D>();
     }
 
+    float timer;
 
     public void EnterState()
     {
         player.playerAnimation.PlayAnimatorClip("Fall");
 
         player.soundEffect.PlayAudio(0);
+        timer = 0;
     }
 
     public void ExitState()
@@ -34,6 +36,8 @@ public class PlayerFallState : IState
 
     public void UpdateState()
     {
+        timer += Time.deltaTime;
+
         if (player.playerDatabase.isHurt)
             player.SwitchState(player.hurtState);
 
@@ -42,19 +46,19 @@ public class PlayerFallState : IState
 
         if (player.playerCollision.isGrounded)
         {
-            // if (rigid.velocity.y < -player.playerDatabase.maxFallVelocity * 0.5f)
+            if (timer > 3)
             {
                 player.SwitchState(player.crouchState);
                 player.soundEffect.PlayAudio(3);
             }
-            // else
-            // {
-            //     player.SwitchState(player.idleState);
-            // }
+            else
+            {
+                player.SwitchState(player.idleState);
+            }
         }
 
         if (player.playerCollision.isRightEdge || player.playerCollision.isLeftEdge)
-            player.SwitchState(player.wallEdge);
+            player.SwitchState(player.wallLedgeState);
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);

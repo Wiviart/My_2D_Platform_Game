@@ -6,33 +6,28 @@ public class PlayerDashState : IState
 {
 
     PlayerStateManager player;
-    PlayerDash playerDash;
     InputControllerNew inputController;
     PlayerDatabase playerDatabase;
     Rigidbody2D rigid;
-    float dashTimer;
-    public PlayerDashState(PlayerStateManager player, PlayerDash playerDash)
+    float timer;
+
+    public PlayerDashState(PlayerStateManager player)
     {
         this.player = player;
-        this.playerDash = playerDash;
-        inputController = player.GetComponent<InputControllerNew>();
-        playerDatabase = player.GetComponent<PlayerDatabase>();
-        rigid = player.GetComponent<Rigidbody2D>();
+        inputController = player.inputController;
+        playerDatabase = player.playerDatabase;
+        rigid = player.rigid;
     }
-
-
-    string DASH = "Wall Jump";
-
 
     public void EnterState()
     {
-        player.playerAnimation.PlayAnimatorClip(DASH);
+        player.playerAnimation.PlayAnimatorClip(player.playerDatabase.DASH);
         Dash();
     }
 
     public void ExitState()
     {
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        rigid.velocity = Vector2.zero;
     }
 
     public void FixedUpdateState()
@@ -50,16 +45,16 @@ public class PlayerDashState : IState
         if (player.playerDatabase.isDied)
             player.SwitchState(player.dieState);
 
-        if (player.playerAnimation.CheckCurrentClip(DASH)
-        && player.playerAnimation.CurrentClipNormalize() > player.playerDatabase.dashingTime)
-        {
+        if (timer > player.playerDatabase.dashingTime)
             player.SwitchState(player.idleState);
-        }
     }
 
     void Dash()
     {
-        if (dashTimer < playerDatabase.dashingCooldown) return;
+        if (player.playerController.dashTimer < player.playerDatabase.dashingCooldown) return;
+       
+        player.playerController.dashTimer = 0;
+        timer = 0;
 
         float dashX;
 
@@ -71,11 +66,9 @@ public class PlayerDashState : IState
         rigid.AddForce(new Vector2(dashX, inputController.inputYRaw) * playerDatabase.dashingPower, ForceMode2D.Impulse);
 
         playerDatabase.afterImage.DisplaySprite();
-
-        dashTimer = 0;
     }
     void LastDashTime()
     {
-        dashTimer += Time.deltaTime;
+        timer += Time.deltaTime;
     }
 }

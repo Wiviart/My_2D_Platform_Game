@@ -12,8 +12,9 @@ public class PlayerStateManager : AStateMachine
     [HideInInspector] public InputControllerNew inputController;
     [HideInInspector] public PlayerAnimation playerAnimation;
     [HideInInspector] public SoundEffect soundEffect;
+    [HideInInspector] public Rigidbody2D rigid;
     PlayerAttackManager playerAttack;
-    PlayerDash playerDash;
+
     void GetObjectComponents()
     {
         playerDatabase = GetComponent<PlayerDatabase>();
@@ -24,6 +25,8 @@ public class PlayerStateManager : AStateMachine
         soundEffect = GetComponentInChildren<SoundEffect>();
 
         playerAttack = GetComponent<PlayerAttackManager>();
+
+        rigid = GetComponent<Rigidbody2D>();
     }
     #endregion
 
@@ -45,7 +48,7 @@ public class PlayerStateManager : AStateMachine
     public PlayerCrouchState crouchState;
     public PlayerWallSlideState wallSlideState;
     public PlayerWallJumpState wallJumpState;
-    public PlayerWallEdgeState wallEdge;
+    public PlayerWallEdgeState wallLedgeState;
     public PlayerWallClimbState wallClimb;
     public PlayerHurtState hurtState;
     public PlayerDieState dieState;
@@ -58,7 +61,7 @@ public class PlayerStateManager : AStateMachine
         runState = new PlayerRunState(this);
         fallState = new PlayerFallState(this);
         onAirState = new PlayerOnAirState(this);
-        dashState = new PlayerDashState(this, playerDash);
+        dashState = new PlayerDashState(this);
         attackState = new PlayerAttackState(this, playerAttack);
         attackState1 = new PlayerAttackState1(this, playerAttack);
         attackState2 = new PlayerAttackState2(this, playerAttack);
@@ -66,8 +69,8 @@ public class PlayerStateManager : AStateMachine
         crouchState = new PlayerCrouchState(this);
         wallSlideState = new PlayerWallSlideState(this);
         wallJumpState = new PlayerWallJumpState(this);
-        wallEdge = new PlayerWallEdgeState(this, playerCollision);
-        wallClimb = new PlayerWallClimbState(this, playerCollision);
+        wallLedgeState = new PlayerWallEdgeState(this);
+        wallClimb = new PlayerWallClimbState(this);
         hurtState = new PlayerHurtState(this, playerAttack);
         dieState = new PlayerDieState(this);
     }
