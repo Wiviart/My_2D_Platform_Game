@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAirAttackState : IState
+public class PlayerAirAttackState2 : IState
 {
     PlayerStateManager player;
     PlayerAttackManager playerAttack;
-    public PlayerAirAttackState(PlayerStateManager player, PlayerAttackManager playerAttack)
+    public PlayerAirAttackState2(PlayerStateManager player, PlayerAttackManager playerAttack)
     {
         this.player = player;
         this.playerAttack = playerAttack;
     }
     public void EnterState()
     {
-        player.playerAnimation.PlayAnimatorClip(player.playerDatabase.AIR_ATK);
+        player.playerAnimation.PlayAnimatorClip(player.playerDatabase.AIR_ATK_2);
         player.soundEffect.PlayAudio(5);
-        playerAttack.AttackCast(3);
+        playerAttack.AttackCast(5);
     }
 
     public void ExitState()
@@ -36,12 +36,15 @@ public class PlayerAirAttackState : IState
         if (player.playerDatabase.isDied)
             player.SwitchState(player.dieState);
 
-        if (player.inputController.isLeftMousePress)
-            player.SwitchState(player.airAttackState1);
-
         if (player.playerAnimation.currentState.normalizedTime <= 1) return;
 
-        player.SwitchState(player.fallState);
+        player.playerAnimation.PlayAnimatorClip(player.playerDatabase.AIR_ATK_2_LOOP);
+
+        if (player.playerCollision.isGrounded)
+            player.playerAnimation.PlayAnimatorClip(player.playerDatabase.AIR_ATK_2_END);
+
+        if (player.playerAnimation.CheckCurrentClip(player.playerDatabase.AIR_ATK_2_END) && player.playerAnimation.currentState.normalizedTime > 1)
+            player.SwitchState(player.idleState);
     }
 
 }

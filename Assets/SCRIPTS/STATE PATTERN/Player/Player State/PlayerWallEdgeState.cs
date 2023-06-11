@@ -38,7 +38,7 @@ public class PlayerWallEdgeState : IState
             player.SwitchState(player.hurtState);
 
         if (player.inputController.inputY > 0)
-            player.SwitchState(player.wallClimb);
+            player.SwitchState(player.wallClimbState);
 
         if (player.inputController.inputY < 0 || !player.playerCollision.isLeftEdge && !player.playerCollision.isRightEdge)
             player.SwitchState(player.wallSlideState);

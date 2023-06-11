@@ -41,15 +41,17 @@ public class PlayerStateManager : AStateMachine
     public PlayerOnAirState onAirState;
     public PlayerFallState fallState;
     public PlayerDashState dashState;
+    public PlayerCrouchState crouchState;
     public PlayerAttackState attackState;
     public PlayerAttackState1 attackState1;
     public PlayerAttackState2 attackState2;
     public PlayerAirAttackState airAttackState;
-    public PlayerCrouchState crouchState;
+    public PlayerAirAttackState1 airAttackState1;
+    public PlayerAirAttackState2 airAttackState2;
     public PlayerWallSlideState wallSlideState;
     public PlayerWallJumpState wallJumpState;
     public PlayerWallEdgeState wallLedgeState;
-    public PlayerWallClimbState wallClimb;
+    public PlayerWallClimbState wallClimbState;
     public PlayerHurtState hurtState;
     public PlayerDieState dieState;
 
@@ -66,11 +68,13 @@ public class PlayerStateManager : AStateMachine
         attackState1 = new PlayerAttackState1(this, playerAttack);
         attackState2 = new PlayerAttackState2(this, playerAttack);
         airAttackState = new PlayerAirAttackState(this, playerAttack);
+        airAttackState1 = new PlayerAirAttackState1(this, playerAttack);
+        airAttackState2 = new PlayerAirAttackState2(this, playerAttack);
         crouchState = new PlayerCrouchState(this);
         wallSlideState = new PlayerWallSlideState(this);
         wallJumpState = new PlayerWallJumpState(this);
         wallLedgeState = new PlayerWallEdgeState(this);
-        wallClimb = new PlayerWallClimbState(this);
+        wallClimbState = new PlayerWallClimbState(this);
         hurtState = new PlayerHurtState(this, playerAttack);
         dieState = new PlayerDieState(this);
     }

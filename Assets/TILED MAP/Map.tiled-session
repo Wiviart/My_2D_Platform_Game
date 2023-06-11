@@ -7,8 +7,8 @@
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "TileSet",
-        ".",
-        "prototype"
+        "prototype",
+        "."
     ],
     "fileStates": {
         ":/automap-tiles.tsx": {
@@ -32,8 +32,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 178,
-                "y": 130.75
+                "x": 134,
+                "y": 221.25
             }
         },
         "TileSet/atlas.tsx": {
@@ -49,14 +49,11 @@
             "scaleInEditor": 1
         },
         "rule_1.tmx": {
-            "expandedObjectLayers": [
-                2
-            ],
             "scale": 11,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 15.454545454545457,
-                "y": 50.13636363636364
+                "x": 15.272727272727277,
+                "y": 49.86363636363637
             }
         }
     },
@@ -66,15 +63,14 @@
     "map.tileWidth": 16,
     "openFiles": [
         "Map 1.tmx",
-        "rule_1.tmx",
-        "TileSet/atlas.tsx"
+        "TileSet/prototype16.tsx"
     ],
     "project": "Map.tiled-project",
     "recentFiles": [
-        "TileSet/atlas.tsx",
-        "rule_1.tmx",
-        "Map 1.tmx",
         "TileSet/prototype16.tsx",
+        "Map 1.tmx",
+        "rule_1.tmx",
+        "TileSet/atlas.tsx",
         "prototype/prototype16.tsx",
         "D:/SOFTWARE/UNITY_PROJECT/Dugeon_Game/Assets/DUNG PHAM/Tiled/TileMap/Map 2.tmx"
     ],
